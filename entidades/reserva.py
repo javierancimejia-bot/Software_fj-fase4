@@ -1,51 +1,51 @@
-"""
-Clase Reserva que integra cliente + servicio.
-"""
+import logging
+from .excepciones import ReservaInvalidaError, ServicioNoDisponibleError, CostoInconsistenteError
 
-from .excepciones import ClienteError, ServicioError, ReservaError
-from .cliente import Cliente
-from .servicio import Servicio
+logger = logging.getLogger(__name__)
 
 
 class Reserva:
-    """Representa una reserva de servicio."""
-    
-    def __init__(self, identificacion, cliente, servicio, duracion):
-        self._identificacion = identificacion
-        self._cliente = cliente
-        self._servicio = servicio
-        self._duracion = duracion
-        self._estado = "pendiente"
-        
-        try:
-            self.validar()
-        except (ClienteError, ServicioError, ReservaError) as error:
-            print(f"Error en reserva: {error}")
-            raise
-    
-    def validar(self):
-        """Valida cliente, servicio y duración."""
-        if not self._cliente.validar():
-            raise ClienteError("Cliente inválido")
-        if not self._servicio.validar():
-            raise ServicioError("Servicio inválido")
-        if self._duracion <= 0:
-            raise ReservaError("Duración inválida")
-    
+    def __init__(self, cliente, servicio, duracion):
+        self.cliente = cliente
+        self.servicio = servicio
+        self.duracion = duracion
+        self.estado = "Pendiente"
+
+    def validar_reserva(self):
+        if self.cliente is None:
+            raise ReservaInvalidaError("La reserva no puede crearse sin cliente.")
+        if self.servicio is None:
+            raise ReservaInvalidaError("La reserva no puede crearse sin servicio.")
+        if not isinstance(self.duracion, int) or self.duracion <= 0:
+            raise ReservaInvalidaError("La duración de la reserva debe ser un entero mayor que cero.")
+
     def confirmar(self):
-        """Confirma la reserva con cálculo de costo."""
         try:
-            costo = self._servicio.calcular_costo_con_impuesto(self._duracion)
-            print(f"Reserva confirmada. Costo: ${costo:.2f}")
-            self._estado = "confirmada"
+            self.validar_reserva()
+            self.servicio.validar_disponibilidad()
+            costo = self.servicio.calcular_costo()
         except Exception as error:
-            raise ReservaError("No se pudo confirmar") from error
+            raise ReservaInvalidaError("No fue posible confirmar la reserva.") from error
         else:
-            print("Confirmación exitosa")
-    
+            self.estado = "Confirmada"
+            logger.info(
+                "Reserva confirmada para %s con servicio %s. Costo: %s",
+                self.cliente.nombre,
+                self.servicio.nombre,
+                costo
+            )
+            return costo
+        finally:
+            logger.info("Proceso de confirmación finalizado para la reserva de %s", self.cliente.nombre if self.cliente else "desconocido")
+
     def cancelar(self):
-        """Cancela la reserva."""
-        self._estado = "cancelada"
-    
-    def __str__(self):
-        return f"Reserva {self._identificacion}: {self._cliente} - {self._servicio.describir()} x{self._duracion}h [{self._estado}]"
+        self.estado = "Cancelada"
+        logger.info("Reserva cancelada para %s", self.cliente.nombre if self.cliente else "desconocido")
+
+    def procesar_reserva(self):
+        try:
+            costo = self.confirmar()
+            return f"Reserva procesada con éxito. Costo total: {costo}"
+        except ReservaInvalidaError as error:
+            logger.error("Error al procesar reserva: %s", error)
+            raise
