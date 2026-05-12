@@ -1,15 +1,23 @@
-"""
-Excepciones personalizadas para el sistema Software FJ.
-"""
-
-class ClienteError(Exception):
-    """Error relacionado con datos de cliente."""
+class ErrorSistemaFJ(Exception):
+    """Excepción base para el sistema Software FJ."""
     pass
 
-class ServicioError(Exception):
-    """Error relacionado con servicios."""
+
+class ClienteInvalidoError(ErrorSistemaFJ):
+    """Se lanza cuando el cliente no cumple validaciones."""
     pass
 
-class ReservaError(Exception):
-    """Error relacionado con reservas."""
+
+class ServicioNoDisponibleError(ErrorSistemaFJ):
+    """Se lanza cuando un servicio no está disponible."""
+    pass
+
+
+class ReservaInvalidaError(ErrorSistemaFJ):
+    """Se lanza cuando una reserva no es válida."""
+    pass
+
+
+class CostoInconsistenteError(ErrorSistemaFJ):
+    """Se lanza cuando el cálculo de costo es inconsistente."""
     pass
