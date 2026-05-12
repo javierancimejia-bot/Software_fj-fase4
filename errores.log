@@ -1,0 +1,62 @@
+2026-05-12 02:39:21,467 - INFO - Cliente creado correctamente: Javier Perez
+2026-05-12 02:39:21,467 - INFO - Operación exitosa: Crear cliente válido
+2026-05-12 02:39:21,468 - INFO - Finalizó la operación: Crear cliente válido
+2026-05-12 02:39:21,468 - ERROR - Fallo en Crear cliente inválido: El nombre del cliente es inválido.
+2026-05-12 02:39:21,468 - INFO - Finalizó la operación: Crear cliente inválido
+2026-05-12 02:39:21,468 - INFO - Operación exitosa: Crear sala disponible
+2026-05-12 02:39:21,468 - INFO - Finalizó la operación: Crear sala disponible
+2026-05-12 02:39:21,468 - INFO - Operación exitosa: Crear equipo disponible
+2026-05-12 02:39:21,468 - INFO - Finalizó la operación: Crear equipo disponible
+2026-05-12 02:39:21,469 - INFO - Operación exitosa: Crear asesoría disponible
+2026-05-12 02:39:21,469 - INFO - Finalizó la operación: Crear asesoría disponible
+2026-05-12 02:39:21,469 - INFO - Operación exitosa: Calcular costo sala con descuento
+2026-05-12 02:39:21,469 - INFO - Finalizó la operación: Calcular costo sala con descuento
+2026-05-12 02:39:21,469 - INFO - Operación exitosa: Calcular costo equipo con descuento
+2026-05-12 02:39:21,469 - INFO - Finalizó la operación: Calcular costo equipo con descuento
+2026-05-12 02:39:21,470 - INFO - Operación exitosa: Calcular costo asesoría sin descuento
+2026-05-12 02:39:21,470 - INFO - Finalizó la operación: Calcular costo asesoría sin descuento
+2026-05-12 02:39:21,470 - INFO - Reserva confirmada para Javier Perez con servicio Sala A. Costo: 100000
+2026-05-12 02:39:21,470 - INFO - Proceso de confirmación finalizado para la reserva de Javier Perez
+2026-05-12 02:39:21,470 - INFO - Operación exitosa: Reserva válida de sala
+2026-05-12 02:39:21,470 - INFO - Finalizó la operación: Reserva válida de sala
+2026-05-12 02:39:21,470 - INFO - Proceso de confirmación finalizado para la reserva de Javier Perez
+2026-05-12 02:39:21,471 - ERROR - Error al procesar reserva: No fue posible confirmar la reserva.
+2026-05-12 02:39:21,471 - ERROR - Fallo en Reserva inválida con duración negativa: No fue posible confirmar la reserva.
+2026-05-12 02:39:21,471 - INFO - Finalizó la operación: Reserva inválida con duración negativa
+2026-05-12 02:39:21,471 - ERROR - Fallo en Reserva con servicio no disponible: Servicio no disponible no inicializado
+2026-05-12 02:39:21,471 - INFO - Finalizó la operación: Reserva con servicio no disponible
+2026-05-12 02:39:21,471 - INFO - Servicio creado para prueba de no disponibilidad: Sala B
+2026-05-12 02:39:21,471 - INFO - Proceso de confirmación finalizado para la reserva de Javier Perez
+2026-05-12 02:39:21,471 - ERROR - Error al procesar reserva: No fue posible confirmar la reserva.
+2026-05-12 02:39:21,471 - ERROR - Excepción encadenada capturada: La reserva falló porque el servicio no está disponible.
+2026-05-12 03:07:59,832 - INFO - Cliente creado correctamente: Javier Perez
+2026-05-12 03:07:59,833 - INFO - Operación exitosa: Crear cliente válido
+2026-05-12 03:07:59,833 - INFO - Finalizó la operación: Crear cliente válido
+2026-05-12 03:07:59,833 - ERROR - Fallo en Crear cliente inválido: El nombre del cliente es inválido.
+2026-05-12 03:07:59,833 - INFO - Finalizó la operación: Crear cliente inválido
+2026-05-12 03:07:59,833 - INFO - Operación exitosa: Crear sala disponible
+2026-05-12 03:07:59,833 - INFO - Finalizó la operación: Crear sala disponible
+2026-05-12 03:07:59,833 - INFO - Operación exitosa: Crear equipo disponible
+2026-05-12 03:07:59,833 - INFO - Finalizó la operación: Crear equipo disponible
+2026-05-12 03:07:59,833 - INFO - Operación exitosa: Crear asesoría disponible
+2026-05-12 03:07:59,834 - INFO - Finalizó la operación: Crear asesoría disponible
+2026-05-12 03:07:59,834 - INFO - Operación exitosa: Calcular costo sala con descuento
+2026-05-12 03:07:59,834 - INFO - Finalizó la operación: Calcular costo sala con descuento
+2026-05-12 03:07:59,835 - INFO - Operación exitosa: Calcular costo equipo con descuento
+2026-05-12 03:07:59,835 - INFO - Finalizó la operación: Calcular costo equipo con descuento
+2026-05-12 03:07:59,835 - INFO - Operación exitosa: Calcular costo asesoría sin descuento
+2026-05-12 03:07:59,835 - INFO - Finalizó la operación: Calcular costo asesoría sin descuento
+2026-05-12 03:07:59,836 - INFO - Reserva confirmada para Javier Perez con servicio Sala A. Costo: 100000
+2026-05-12 03:07:59,836 - INFO - Proceso de confirmación finalizado para la reserva de Javier Perez
+2026-05-12 03:07:59,836 - INFO - Operación exitosa: Reserva válida de sala
+2026-05-12 03:07:59,836 - INFO - Finalizó la operación: Reserva válida de sala
+2026-05-12 03:07:59,837 - INFO - Proceso de confirmación finalizado para la reserva de Javier Perez
+2026-05-12 03:07:59,837 - ERROR - Error al procesar reserva: No fue posible confirmar la reserva.
+2026-05-12 03:07:59,837 - ERROR - Fallo en Reserva inválida con duración negativa: No fue posible confirmar la reserva.
+2026-05-12 03:07:59,837 - INFO - Finalizó la operación: Reserva inválida con duración negativa
+2026-05-12 03:07:59,837 - ERROR - Fallo en Reserva con servicio no disponible: Servicio no disponible no inicializado
+2026-05-12 03:07:59,837 - INFO - Finalizó la operación: Reserva con servicio no disponible
+2026-05-12 03:07:59,837 - INFO - Servicio creado para prueba de no disponibilidad: Sala B
+2026-05-12 03:07:59,838 - INFO - Proceso de confirmación finalizado para la reserva de Javier Perez
+2026-05-12 03:07:59,838 - ERROR - Error al procesar reserva: No fue posible confirmar la reserva.
+2026-05-12 03:07:59,838 - ERROR - Excepción encadenada capturada: La reserva falló porque el servicio no está disponible.
