@@ -1,38 +1,56 @@
-"""
-Clase Cliente con validaciones.
-"""
+import logging
+from .excepciones import ClienteInvalidoError
 
-from .excepciones import ClienteError
+logger = logging.getLogger(__name__)
 
 
 class Cliente:
-    """Representa un cliente del sistema Software FJ."""
-    
-    def __init__(self, identificacion, nombre, email, telefono):
-        self._identificacion = identificacion
-        self._nombre = None
-        self._email = None
-        self._telefono = None
-        
-        try:
-            self.validar_datos(nombre, email, telefono)
-            self._nombre = nombre
-            self._email = email
-            self._telefono = telefono
-        except ClienteError as error:
-            print(f"Error creando cliente: {error}")
-            raise
-    
-    def validar_datos(self, nombre, email, telefono):
-        """Valida que los datos del cliente sean correctos."""
-        if not nombre or not email or not telefono:
-            raise ClienteError("Datos incompletos")
-        if "@" not in email:
-            raise ClienteError("Email inválido")
-    
-    def validar(self):
-        """Retorna True si el cliente es válido."""
-        return bool(self._nombre and self._email and self._telefono)
-    
+    def __init__(self, nombre, documento, correo, telefono):
+        self.nombre = nombre
+        self.documento = documento
+        self.correo = correo
+        self.telefono = telefono
+        logger.info("Cliente creado correctamente: %s", self.nombre)
+
+    @property
+    def nombre(self):
+        return self._nombre
+
+    @nombre.setter
+    def nombre(self, valor):
+        if not isinstance(valor, str) or not valor.strip():
+            raise ClienteInvalidoError("El nombre del cliente es inválido.")
+        self._nombre = valor.strip()
+
+    @property
+    def documento(self):
+        return self._documento
+
+    @documento.setter
+    def documento(self, valor):
+        if not isinstance(valor, str) or not valor.strip():
+            raise ClienteInvalidoError("El documento del cliente es inválido.")
+        self._documento = valor.strip()
+
+    @property
+    def correo(self):
+        return self._correo
+
+    @correo.setter
+    def correo(self, valor):
+        if not isinstance(valor, str) or "@" not in valor or not valor.strip():
+            raise ClienteInvalidoError("El correo del cliente es inválido.")
+        self._correo = valor.strip()
+
+    @property
+    def telefono(self):
+        return self._telefono
+
+    @telefono.setter
+    def telefono(self, valor):
+        if not isinstance(valor, str) or not valor.strip():
+            raise ClienteInvalidoError("El teléfono del cliente es inválido.")
+        self._telefono = valor.strip()
+
     def __str__(self):
-        return f"Cliente {self._identificacion}: {self._nombre} ({self._email})"
+        return f"Cliente: {self.nombre} | Documento: {self.documento} | Correo: {self.correo} | Teléfono: {self.telefono}"
