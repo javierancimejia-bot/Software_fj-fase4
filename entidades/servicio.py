@@ -1,61 +1,29 @@
-"""
-Clases de servicios: abstracta + especializadas.
-"""
-
 from abc import ABC, abstractmethod
+from .excepciones import CostoInconsistenteError
 
 
 class Servicio(ABC):
-    """Servicio abstracto base."""
-    
-    def __init__(self, identificacion, nombre, costo_base):
-        self._identificacion = identificacion
-        self._nombre = nombre
-        self._costo_base = costo_base
-    
+    def __init__(self, nombre, precio_base, disponible=True):
+        self.nombre = nombre
+        self.precio_base = precio_base
+        self.disponible = disponible
+
     @abstractmethod
-    def calcular_costo(self, duracion):
-        """Calcula costo según tipo de servicio."""
+    def describir_servicio(self):
         pass
-    
-    def calcular_costo_con_impuesto(self, duracion, impuesto=0.19):
-        """Sobrecarga: versión con impuesto."""
-        return self.calcular_costo(duracion) * (1 + impuesto)
-    
-    def describir(self):
-        """Retorna descripción del servicio."""
-        return f"Servicio {self._nombre} (${self._costo_base}/hora)"
-    
-    def validar(self):
-        """Retorna True si el servicio es válido."""
-        return self._costo_base > 0
 
+    @abstractmethod
+    def calcular_costo(self, descuento=0):
+        pass
 
-class ReservaSala(Servicio):
-    """Reserva de sala por hora."""
-    
-    def calcular_costo(self, duracion):
-        return self._costo_base * duracion
-    
-    def describir(self):
-        return f"Reserva de sala {self._nombre} por hora"
+    def validar_disponibilidad(self):
+        if not self.disponible:
+            raise RuntimeError(f"El servicio {self.nombre} no está disponible.")
 
-
-class AlquilerEquipo(Servicio):
-    """Alquiler de equipo (costo fijo)."""
-    
-    def calcular_costo(self, duracion):
-        return self._costo_base
-    
-    def describir(self):
-        return f"Alquiler equipo {self._nombre} (fijo)"
-
-
-class Asesoria(Servicio):
-    """Asesoría especializada (premium)."""
-    
-    def calcular_costo(self, duracion):
-        return self._costo_base * duracion * 1.5
-    
-    def describir(self):
-        return f"Asesoría especializada {self._nombre}"
+    def calcular_con_impuesto(self, impuesto=0.19):
+        costo = self.calcular_costo()
+        if costo < 0:
+            raise CostoInconsistenteError(
+                f"El costo del servicio {self.nombre} no puede ser negativo."
+            )
+        return costo + (costo * impuesto)
